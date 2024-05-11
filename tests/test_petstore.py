@@ -1,6 +1,7 @@
 import requests
 
 from petstore_api_test_project.pet_methods.create_pet import create_pet
+from petstore_api_test_project.pet_methods.create_user import create_user
 from petstore_api_test_project.pet_methods.delete_pet import delete_pet
 from petstore_api_test_project.pet_methods.get_pet import return_pet
 from petstore_api_test_project.utils.validate_schema import validate_response_to_json_schema
@@ -18,8 +19,10 @@ def test_load_pet_image():
     pass
 
 
-def test_change_pet_name():
-    pass
+def test_create_user():
+    new_user = create_user(username='Kate')
+    assert new_user.status_code == 200
+    validate_response_to_json_schema(json_schema='post_user.json', response=new_user)
 
 
 def test_find_pet_by_id():
