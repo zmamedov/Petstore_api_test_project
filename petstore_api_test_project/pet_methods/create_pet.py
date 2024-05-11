@@ -16,4 +16,3 @@ def create_pet(pet_name):
     )
 
     return new_pet
-
