@@ -15,7 +15,7 @@ def get_pet_by_id(pet):
     with allure.step('Проверка, что API возвращает код статуса 200.'):
         assert response.status_code == 200
 
-    with allure.step('Проверка, что найденный питомец содержит корректное имя.'):
+    with allure.step(f'Проверка, что у найденного питомца имя - "{response.json()['name']}".'):
         assert response.json()['name'] == pet.json()['name']
 
     validate_response_to_json_schema(json_schema='get_pet.json', response=response)
