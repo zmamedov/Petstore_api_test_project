@@ -1,6 +1,7 @@
 import requests
 
 from petstore_api_test_project.pet_methods.create_pet import create_pet
+from petstore_api_test_project.pet_methods.delete_pet import delete_pet
 from petstore_api_test_project.pet_methods.get_pet import return_pet
 from petstore_api_test_project.utils.validate_schema import validate_response_to_json_schema
 
@@ -33,4 +34,10 @@ def test_find_pet_by_id():
 
 
 def test_delete_pet():
-    pass
+    new_pet = create_pet(pet_name='Miky')
+    new_pet_id = new_pet.json()['id']
+
+    response = delete_pet(new_pet_id)
+    assert response.status_code == 200
+    assert response.json()['message'] == str(new_pet_id)
+    validate_response_to_json_schema(json_schema='delete_pet.json', response=response)
