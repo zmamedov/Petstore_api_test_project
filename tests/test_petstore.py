@@ -1,9 +1,8 @@
 import requests
 
-from petstore_api_test_project.pet_methods.create_pet import create_pet
-from petstore_api_test_project.pet_methods.create_user import create_user
-from petstore_api_test_project.pet_methods.delete_pet import delete_pet
-from petstore_api_test_project.pet_methods.get_pet import return_pet
+from petstore_api_test_project.api_requests.post_method import create_pet, create_user
+from petstore_api_test_project.api_requests.delete_method import delete_pet
+from petstore_api_test_project.api_requests.get_method import return_pet
 from petstore_api_test_project.utils.validate_schema import validate_response_to_json_schema
 
 
