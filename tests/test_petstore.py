@@ -2,7 +2,7 @@ import json
 import requests
 from jsonschema import validate
 
-from petstore_api_test_project.pet.create_pet import create_pet
+from petstore_api_test_project.pet_methods.create_pet import create_pet
 from petstore_api_test_project.utils.path import abs_path_from_project
 
 
@@ -11,8 +11,8 @@ def test_add_new_pet_to_store():
 
     assert new_pet.status_code == 200
     assert new_pet.json()['name'] == 'Spike'
-    file_name = abs_path_from_project('petstore_api_test_project\\json_schemas\\post_pet.json')
-    with open(file_name) as file:
+    json_file = abs_path_from_project('petstore_api_test_project\\json_schemas\\post_pet.json')
+    with open(json_file) as file:
         f = file.read()
         validate(new_pet.json(), schema=json.loads(f))
 
