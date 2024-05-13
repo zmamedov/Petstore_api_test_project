@@ -1,18 +1,17 @@
 import allure
-import requests
 
+from petstore_api_test_project.api.api_requests import delete_request
 from petstore_api_test_project.utils.validate_schema import validate_response_to_json_schema
 
 
 def delete_pet(url, pet):
     endpoint = '/v2/pet/'
-
     pet_id = pet.json()['id']
 
+    url = url + endpoint + f'{pet_id}'
+
     with allure.step('Отправить запрос для удаления питомца в магазине.'):
-        response = requests.delete(
-            url=url + endpoint + f'{pet_id}'
-        )
+        response = delete_request(url)
 
     with allure.step('Проверка, что API возвращает код статуса 200.'):
         assert response.status_code == 200

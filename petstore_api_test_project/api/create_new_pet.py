@@ -1,6 +1,7 @@
 import json
 import allure
-import requests
+
+from petstore_api_test_project.api.api_requests import post_request
 
 
 def create_new_pet(url, pet_name):
@@ -11,12 +12,11 @@ def create_new_pet(url, pet_name):
         'Content-Type': 'application/json'
     }
     endpoint = '/v2/pet'
+
+    url = url + endpoint
+
     with allure.step('Отправить запрос для добавления питомца в магазин.'):
-        new_pet = requests.post(
-            url=url + endpoint,
-            headers=headers,
-            data=payload
-        )
+        new_pet = post_request(url, headers, payload)
 
     with allure.step('Проверка, что API возвращает код статуса 200.'):
         assert new_pet.status_code == 200

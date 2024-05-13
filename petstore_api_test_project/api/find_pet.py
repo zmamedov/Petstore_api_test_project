@@ -1,18 +1,17 @@
 import allure
-import requests
 
+from petstore_api_test_project.api.api_requests import get_request
 from petstore_api_test_project.utils.validate_schema import validate_response_to_json_schema
 
 
 def get_pet_by_id(url, pet):
     endpoint = '/v2/pet/'
-
     pet_id = pet.json()['id']
 
+    url = url + endpoint + f'{pet_id}'
+
     with allure.step('Отправить запрос для получения питомца по ID.'):
-        response = requests.get(
-            url=url + endpoint + f'{pet_id}'
-        )
+        response = get_request(url)
 
     with allure.step('Проверка, что API возвращает код статуса 200.'):
         assert response.status_code == 200
@@ -26,10 +25,10 @@ def get_pet_by_id(url, pet):
 def get_nonexisting_pet_by_id(url, pet_id):
     endpoint = '/v2/pet/'
 
+    url = url + endpoint + f'{pet_id}'
+
     with allure.step('Отправить запрос для получения питомца по несуществующему ID.'):
-        response = requests.get(
-            url=url + endpoint + f'{pet_id}'
-        )
+        response = get_request(url)
 
     with allure.step('Проверка, что API возвращает код статуса 404.'):
         assert response.status_code == 404
@@ -37,10 +36,11 @@ def get_nonexisting_pet_by_id(url, pet_id):
 
 def get_pet_by_status(url, status):
     endpoint = '/v2/pet/findByStatus?status='
+
+    url = url + endpoint + f'{status}'
+
     with allure.step(f'Отправить запрос для поиска всех питомцев со статусом "{status}".'):
-        response = requests.get(
-            url=url + endpoint + f'{status}'
-        )
+        response = get_request(url)
 
     with allure.step('Проверка, что API возвращает код статуса 200.'):
         assert response.status_code == 200
