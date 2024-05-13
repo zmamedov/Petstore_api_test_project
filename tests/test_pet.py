@@ -3,7 +3,7 @@ from allure_commons.types import Severity
 
 from petstore_api_test_project.api.create_new_pet import create_new_pet
 from petstore_api_test_project.api.delete_pet import delete_pet
-from petstore_api_test_project.api.find_pet import get_pet_by_id, get_nonexisting_pet_by_id, get_pet_by_status
+from petstore_api_test_project.api.find_pet import get_pet_by_id, get_nonexistent_pet_by_id, get_pet_by_status
 from petstore_api_test_project.utils.validate_schema import validate_response_to_json_schema
 
 
@@ -37,7 +37,7 @@ class TestPet:
     @allure.severity(Severity.NORMAL)
     @allure.label('owner', 'zmamedov')
     def test_dont_find_pet_by_id(self, api_url):
-        get_nonexisting_pet_by_id(api_url, pet_id=111222)
+        get_nonexistent_pet_by_id(api_url, pet_id=111222)
 
     @allure.title('Find all pets with status "pending"')
     @allure.story('Return pet')

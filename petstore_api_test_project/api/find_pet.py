@@ -22,7 +22,7 @@ def get_pet_by_id(url, pet):
     validate_response_to_json_schema(json_schema='get_pet.json', response=response)
 
 
-def get_nonexisting_pet_by_id(url, pet_id):
+def get_nonexistent_pet_by_id(url, pet_id):
     endpoint = '/v2/pet/'
 
     url = url + endpoint + f'{pet_id}'
