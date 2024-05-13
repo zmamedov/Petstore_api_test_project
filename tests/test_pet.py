@@ -16,8 +16,8 @@ class TestPet:
     @allure.tag('web')
     @allure.severity(Severity.CRITICAL)
     @allure.label('owner', 'zmamedov')
-    def test_add_new_pet_to_store(self):
-        new_pet = create_new_pet(pet_name='Spike')
+    def test_add_new_pet_to_store(self, api_url):
+        new_pet = create_new_pet(api_url, pet_name='Spike')
 
         validate_response_to_json_schema(json_schema='post_pet.json', response=new_pet)
 
@@ -26,33 +26,33 @@ class TestPet:
     @allure.tag('web')
     @allure.severity(Severity.CRITICAL)
     @allure.label('owner', 'zmamedov')
-    def test_find_pet_by_id(self):
-        new_pet = create_new_pet(pet_name='Miky')
+    def test_find_pet_by_id(self, api_url):
+        new_pet = create_new_pet(api_url, pet_name='Miky')
 
-        get_pet_by_id(new_pet)
+        get_pet_by_id(api_url, new_pet)
 
     @allure.title('Search of non-existent pet')
     @allure.story('Return pet')
     @allure.tag('web')
     @allure.severity(Severity.NORMAL)
     @allure.label('owner', 'zmamedov')
-    def test_dont_find_pet_by_id(self):
-        get_nonexisting_pet_by_id(pet_id=111222)
+    def test_dont_find_pet_by_id(self, api_url):
+        get_nonexisting_pet_by_id(api_url, pet_id=111222)
 
     @allure.title('Find all pets with status "pending"')
     @allure.story('Return pet')
     @allure.tag('web')
     @allure.severity(Severity.NORMAL)
     @allure.label('owner', 'zmamedov')
-    def test_find_all_pets_with_pending_status(self):
-        get_pet_by_status(status='pending')
+    def test_find_all_pets_with_pending_status(self, api_url):
+        get_pet_by_status(api_url, status='pending')
 
     @allure.title('Delete pet in the store')
     @allure.story('Delete pet')
     @allure.tag('web')
     @allure.severity(Severity.CRITICAL)
     @allure.label('owner', 'zmamedov')
-    def test_delete_pet_from_store(self):
-        new_pet = create_new_pet(pet_name='Lily')
+    def test_delete_pet_from_store(self, api_url):
+        new_pet = create_new_pet(api_url, pet_name='Lily')
 
-        delete_pet(new_pet)
+        delete_pet(api_url, new_pet)

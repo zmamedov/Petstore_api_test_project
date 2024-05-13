@@ -3,16 +3,17 @@ import allure
 import requests
 
 
-def create_new_pet(pet_name):
+def create_new_pet(url, pet_name):
     payload = json.dumps({
         "name": pet_name
     })
     headers = {
         'Content-Type': 'application/json'
     }
+    endpoint = '/v2/pet'
     with allure.step('Отправить запрос для добавления питомца в магазин.'):
         new_pet = requests.post(
-            url='https://petstore.swagger.io/v2/pet',
+            url=url + endpoint,
             headers=headers,
             data=payload
         )
