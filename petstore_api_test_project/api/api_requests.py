@@ -8,7 +8,7 @@ from allure_commons.types import AttachmentType
 from requests import Response
 
 
-def get_request(url, params):
+def get_request(url, params=None):
     response = requests.get(
         url=url,
         params=params

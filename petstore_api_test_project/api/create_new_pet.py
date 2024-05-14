@@ -18,10 +18,4 @@ def create_new_pet(url, pet_name):
     with allure.step('Отправить запрос для добавления питомца в магазин.'):
         new_pet = post_request(url, headers, payload)
 
-    with allure.step('Проверка, что API возвращает код статуса 200.'):
-        assert new_pet.status_code == 200
-
-    with allure.step(f'Проверить, что имя питомца - "{pet_name}".'):
-        assert new_pet.json()['name'] == pet_name
-
     return new_pet
