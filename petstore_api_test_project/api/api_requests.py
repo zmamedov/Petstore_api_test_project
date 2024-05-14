@@ -8,9 +8,10 @@ from allure_commons.types import AttachmentType
 from requests import Response
 
 
-def get_request(url):
+def get_request(url, params):
     response = requests.get(
-        url=url
+        url=url,
+        params=params
     )
     response_logging(response)
     response_attaching(response)

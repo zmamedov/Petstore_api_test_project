@@ -35,12 +35,13 @@ def get_nonexistent_pet_by_id(url, pet_id):
 
 
 def get_pet_by_status(url, status):
-    endpoint = '/v2/pet/findByStatus?status='
+    endpoint = '/v2/pet/findByStatus'
+    params = {'status': status}
 
-    url = url + endpoint + f'{status}'
+    url = url + endpoint
 
     with allure.step(f'Отправить запрос для поиска всех питомцев со статусом "{status}".'):
-        response = get_request(url)
+        response = get_request(url, params=params)
 
     with allure.step('Проверка, что API возвращает код статуса 200.'):
         assert response.status_code == 200
