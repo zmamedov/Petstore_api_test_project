@@ -37,6 +37,14 @@
 
 ---
 
+### Интеграция с Allure TestOps
+
+> [Job #3989 zmamedov-qa_guru_Petstore_api_test](https://allure.autotests.cloud/project/4223/jobs)
+
+![allure_testops job](pictures/allure_testops_job.png)
+
+---
+
 ### Уведомления в Телеграм
 
 ![telegram_notification](pictures/tg_notification.png)
