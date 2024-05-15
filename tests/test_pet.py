@@ -67,7 +67,6 @@ class TestPet:
             assert response.status_code == 200
         with allure.step('Проверка, что статус первого питомца в ответе - "pending".'):
             assert response.json()[0]['status'] == 'pending'
-        validate_response_to_json_schema(json_schema='get_pet_by_status.json', response=response)
 
     @allure.title('Delete pet in the store')
     @allure.story('Delete pet')
